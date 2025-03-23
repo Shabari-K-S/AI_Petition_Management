@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@config "../tailwind.config.js";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  :root {
+    /* Light Theme Colors */
+    --background: 0 0% 100%; /* White - --bg-100 */
+    --foreground: 0 0% 20%; /* Dark Gray - --text-100 */
+    --card: 0 0% 98%; /* Very Light Gray - --bg-200 */
+    --card-foreground: 0 0% 36%; /* Medium Gray - --text-200 */
+    --popover: 0 0% 98%; /* Very Light Gray - --bg-200 */
+    --popover-foreground: 0 0% 36%; /* Medium Gray - --text-200 */
+    
+    --primary: 204 100% 38%; /* Deep Blue - #0077C2 - --primary-100 */
+    --primary-foreground: 0 0% 100%; /* White - --text-100 */
+    --secondary: 204 80% 70%; /* Lighter Blue - #59a5f5 - --primary-200 */
+    --secondary-foreground: 0 0% 20%; /* Dark Gray - --text-100 */
+    
+    --muted: 204 20% 90%; /* Very Light Blue Gray - --bg-300 */
+    --muted-foreground: 0 0% 45%; /* Soft Gray - --text-200 */
+    
+    --accent: 196 100% 50%; /* Bright Cyan - #00BFFF - --accent-100 */
+    --accent-foreground: 0 0% 100%; /* White - --text-100 */
+    
+    --destructive: 0 84% 60%; /* Bright Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+    
+    --border: 0 0% 85%; /* Light Gray - --bg-300 */
+    --input: 0 0% 85%; /* Light Gray - --bg-300 */
+    --ring: 196 100% 50%; /* Bright Cyan - --accent-100 */
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark Theme Colors */
+    --background: 220 20% 12%; /* Very Dark Blue Gray - --bg-100 */
+    --foreground: 0 0% 100%; /* White - --text-100 */
+    --card: 220 20% 18%; /* Dark Blue Gray - --bg-200 */
+    --card-foreground: 0 0% 80%; /* Light Gray - --text-200 */
+    --popover: 220 20% 18%; /* Dark Blue Gray - --bg-200 */
+    --popover-foreground: 0 0% 80%; /* Light Gray - --text-200 */
+    
+    --primary: 210 100% 50%; /* Bright Blue - #0085ff - --primary-100 */
+    --primary-foreground: 0 0% 100%; /* White - --text-100 */
+    --secondary: 210 80% 70%; /* Soft Blue - #69b4ff - --primary-200 */
+    --secondary-foreground: 0 0% 100%; /* White - --text-100 */
+    
+    --muted: 220 20% 25%; /* Dark Muted Blue Gray - --bg-300 */
+    --muted-foreground: 0 0% 60%; /* Soft Gray - --text-200 */
+    
+    --accent: 210 100% 44%; /* Deep Blue - #006fff - --accent-100 */
+    --accent-foreground: 0 0% 100%; /* White - --text-100 */
+    
+    --destructive: 0 62% 30%; /* Muted Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+    
+    --border: 220 20% 30%; /* Dark Border - --bg-300 */
+    --input: 220 20% 30%; /* Dark Input - --bg-300 */
+    --ring: 210 100% 44%; /* Deep Blue - --accent-100 */
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .blurry-gradient {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+      rgba(0, 123, 194, 0.2) 0%, 
+      rgba(255, 255, 255, 0) 70%
+    );
+    filter: blur(60px);
+    z-index: -1;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .blurry-gradient-2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+      rgba(0, 191, 255, 0.2) 0%, 
+      rgba(255, 255, 255, 0) 70%
+    );
+    filter: blur(60px);
+    z-index: -1;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .glass-card {
+    @apply bg-white/10 dark:bg-white/5 backdrop-blur-sm border border-border/20;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
